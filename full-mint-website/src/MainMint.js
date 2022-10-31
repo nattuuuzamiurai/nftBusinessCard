@@ -5,6 +5,7 @@ import BusinessCardNft from "./BusinessCardNft.json";
 const BusinessCardNftAddress = process.env.NFT_ADDRESS;
 
 const MainMint = ({ accounts, setAccounts }) => {
+	//ミントの数を定義。デフォルトは１
 	const [mintAmount, setMintAmount] = useState(1);
 	const isConnected = Boolean(accounts[0]);
 
@@ -18,7 +19,10 @@ const MainMint = ({ accounts, setAccounts }) => {
 				signer
 			);
 			try {
+				//コントラクト内のmint()を実行
+				//solidityで使うためにBigNumberに変換
 				const response = await contract.mint();
+				console.log("response: ", response);
 			} catch (err) {
 				console.log("error: ", err);
 			}
