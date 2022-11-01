@@ -15,12 +15,11 @@ contract BusinessCardNft is ERC721, Ownable {
     
     mapping(address => uint256) public minted;
 
-    function mint() public {
-        require(minted[msg.sender] == 0, 'alredy minted');
-        minted[msg.sender] = 1;
+    function mint(address to) public onlyOwner {
+        minted[to] = 1;
         uint256 tokenId = totalSupply;
         totalSupply++;
-        _safeMint(msg.sender, tokenId);
+        _safeMint(to, tokenId);
     }
 
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
@@ -28,7 +27,7 @@ contract BusinessCardNft is ERC721, Ownable {
         return baseTokenUri; 
     }
 
-    function wothdraw() external onlyOwner {
+    function withdraw() external onlyOwner {
         (bool success,) = msg.sender.call{ value: address(this).balance }('');
         require(success, 'withdraw failed');
     }

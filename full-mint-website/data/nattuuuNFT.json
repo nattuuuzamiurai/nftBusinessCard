@@ -1,0 +1,10 @@
+{
+	"name": "なっとう侍 (DEZUKI #2098)",
+	"description": "ブロックチェーンエンジニアとして活動しているなっとう自作のNFT名刺プロトタイプ",
+	"image": "ipfs://QmU7yhSTzhNuJFg9QMcP6kpZQguhAh8862w2C4ZgHPJEaM/2098.jpg",
+	"external_url": "https://twitter.com/nattuuu_zamurai",
+	"attributes": [
+		{ "trait_type": "creator", "value": "DEZUKI-Team" },
+		{ "trait_type": "owner", "value": "@nattuuu_zamurai" }
+	]
+}
