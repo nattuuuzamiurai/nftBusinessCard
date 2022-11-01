@@ -20,7 +20,6 @@ const MainMint = ({ accounts, setAccounts }) => {
 			);
 			try {
 				//コントラクト内のmint()を実行
-				//solidityで使うためにBigNumberに変換
 				const response = await contract.mint();
 				console.log("response: ", response);
 			} catch (err) {
@@ -39,7 +38,7 @@ const MainMint = ({ accounts, setAccounts }) => {
 				fontFamily="VT323"
 				textShadow="0 2px 2px #000000"
 			>
-				なっとう侍の名刺NFTをゲットしよう! mint費用がガス代のみ!
+				なっとう侍の名刺NFTをゲットしよう! mint費用はガス代のみ!
 			</Text>
 			{isConnected ? (
 				<div>
