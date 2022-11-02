@@ -6,7 +6,7 @@ import BusinessCardNft from "./BusinessCardNft.json";
 const BusinessCardNftAddress = process.env.NFT_ADDRESS;
 
 const MainMint = ({ accounts, setAccounts }) => {
-	const [address, setAddress] = useState();
+	const [address, setAddress] = useState("");
 	const [addText, setAddText] = useState("");
 	const isAddress = Boolean(ethers.utils.isAddress(addText));
 
@@ -31,9 +31,11 @@ const MainMint = ({ accounts, setAccounts }) => {
 
 	return (
 		<Box>
-			<Text fontSize="48px" textShadow="0 5px #000000">
-				NFT名刺
-			</Text>
+			<div className="title">
+				<Text fontSize="120px" textShadow="0 5px #000000">
+					NFT名刺
+				</Text>
+			</div>
 			{isAddress ? (
 				<Text
 					fontSize="30px"
@@ -55,7 +57,10 @@ const MainMint = ({ accounts, setAccounts }) => {
 					</Text>
 					<Flex align="center" justify="center">
 						<Input
+							htmlSize={10}
+							color="gray.300"
 							fontFamily="inherit"
+							backgroundColor="#C0C0C0"
 							width="650px"
 							height="40px"
 							textAlign="center"
