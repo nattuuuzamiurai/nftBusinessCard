@@ -4,14 +4,11 @@ import MainMint from "./MainMint";
 import NavBar from "./NavBar";
 
 function App() {
-	//フックを作成
-	const [accounts, setAccounts] = useState([]);
-
 	return (
 		<div className="overlay">
 			<div className="App">
-				<NavBar accounts={accounts} setAccounts={setAccounts} />
-				<MainMint accounts={accounts} setAccounts={setAccounts} />
+				<NavBar />
+				<MainMint />
 			</div>
 			<div className="moving-background"></div>
 		</div>

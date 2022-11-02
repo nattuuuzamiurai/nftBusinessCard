@@ -6,42 +6,71 @@ import BusinessCardNft from "./BusinessCardNft.json";
 const BusinessCardNftAddress = process.env.NFT_ADDRESS;
 
 const MainMint = ({ accounts, setAccounts }) => {
-	//ミントの数を定義。デフォルトは１
-	const isConnected = Boolean(accounts[0]);
+	const [address, setAddress] = useState("");
+	const [addText, setAddText] = useState("");
+	const isAddress = Boolean(ethers.utils.isAddress(addText));
 
-	async function handleMint() {
-		if (window.ethereum) {
-			const provider = new ethers.providers.Web3Provider(window.ethereum);
-			const signer = provider.getSigner();
-			const contract = new ethers.Contract(
-				BusinessCardNftAddress,
-				BusinessCardNft.abi,
-				signer
-			);
-			try {
-				//コントラクト内のmint()を実行
-				const response = await contract.mint();
-				console.log("response: ", response);
-			} catch (err) {
-				console.log("error: ", err);
-			}
+	async function storageAddress() {
+		console.log(address);
+		try {
+			//コントラクト内のmint()を実行
+			// const response = await contract.mint();
+			// console.log("response: ", response);
+		} catch (err) {
+			console.log("error: ", err);
 		}
 	}
+	const onClickAddAddress = () => {
+		setAddText(address);
+		setAddress("");
+		const checkAddress = address.toString();
+		if (!ethers.utils.isAddress(address)) {
+			alert("入力されたaddressは無効です!");
+		}
+	};
+
 	return (
-		<div>
-			<Text fontSize="48px" textShadow="0 5px #000000">
-				NFT名刺
-			</Text>
-			<Text
-				fontSize="30px"
-				letterSpacing="-5.5%"
-				fontFamily="VT323"
-				textShadow="0 2px 2px #000000"
-			>
-				なっとう侍の名刺NFTをゲットしよう! mint費用はガス代のみ!
-			</Text>
-			{isConnected ? (
-				<div>
+		<Box>
+			<div className="title">
+				<Text fontSize="120px" textShadow="0 5px #000000">
+					NFT名刺
+				</Text>
+			</div>
+			{isAddress ? (
+				<Text
+					fontSize="30px"
+					letterSpacing="-5.5%"
+					fontFamily="VT323"
+					textShadow="0 2px 2px #000000"
+				>
+					success! 数分以内にNFT名刺が転送されます!
+				</Text>
+			) : (
+				<>
+					<Text
+						fontSize="30px"
+						letterSpacing="-5.5%"
+						fontFamily="VT323"
+						textShadow="0 2px 2px #000000"
+					>
+						ADDRESSを入力してください
+					</Text>
+					<Flex align="center" justify="center">
+						<Input
+							htmlSize={10}
+							color="gray.300"
+							fontFamily="inherit"
+							backgroundColor="#C0C0C0"
+							width="650px"
+							height="40px"
+							textAlign="center"
+							paddingLeft="19px"
+							marginTop="10px"
+							type="string"
+							value={address}
+							onChange={(event) => setAddress(event.target.value)}
+						/>
+					</Flex>
 					<Flex align="center" justify="center"></Flex>
 					<Button
 						backgroundColor="#D6517D"
@@ -52,15 +81,13 @@ const MainMint = ({ accounts, setAccounts }) => {
 						fontFamily="inherit"
 						padding="15px"
 						marginTop="10px"
-						onClick={handleMint}
+						onClick={onClickAddAddress}
 					>
-						Mint Now
+						Mint
 					</Button>
-				</div>
-			) : (
-				<p>You must be connected to Mint.</p>
+				</>
 			)}
-		</div>
+		</Box>
 	);
 };
 
