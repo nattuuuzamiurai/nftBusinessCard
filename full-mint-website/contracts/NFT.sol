@@ -8,11 +8,15 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract BusinessCardNft is ERC721, Ownable {
     string internal baseTokenUri;
     uint256 public totalSupply = 0;
-    constructor(string memory _name, string memory _symbol, string memory _baseTokenURI)
-        ERC721(_name, _symbol){
-            baseTokenUri = _baseTokenURI;
-        }
-    
+
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        string memory _baseTokenURI
+    ) ERC721(_name, _symbol) {
+        baseTokenUri = _baseTokenURI;
+    }
+
     mapping(address => uint256) public minted;
 
     function mint(address to) public onlyOwner {
@@ -22,14 +26,18 @@ contract BusinessCardNft is ERC721, Ownable {
         _safeMint(to, tokenId);
     }
 
-    function tokenURI(uint256 tokenId) public view override returns (string memory) {
-        require(_exists(tokenId), 'Token does not exist!');
-        return baseTokenUri; 
+    function tokenURI(uint256 tokenId)
+        public
+        view
+        override
+        returns (string memory)
+    {
+        require(_exists(tokenId), "Token does not exist!");
+        return baseTokenUri;
     }
 
     function withdraw() external onlyOwner {
-        (bool success,) = msg.sender.call{ value: address(this).balance }('');
-        require(success, 'withdraw failed');
+        (bool success, ) = msg.sender.call{value: address(this).balance}("");
+        require(success, "withdraw failed");
     }
-
 }
