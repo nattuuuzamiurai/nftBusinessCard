@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { ethers, BigNumber } from "ethers";
 import { Button, Box, Flex, Input, Text } from "@chakra-ui/react";
-import BusinessCardNft from "./BusinessCardNft.json";
+import { BusinessCardNft } from "./BusinessCardNft.json";
+import mint from "./mint.js";
 
 const BusinessCardNftAddress = process.env.NFT_ADDRESS;
 
@@ -20,12 +21,15 @@ const MainMint = ({ accounts, setAccounts }) => {
 			console.log("error: ", err);
 		}
 	}
-	const onClickAddAddress = () => {
+	const onClickAddAddress = async () => {
 		setAddText(address);
 		setAddress("");
 		const checkAddress = address.toString();
 		if (!ethers.utils.isAddress(address)) {
 			alert("入力されたaddressは無効です!");
+		} else {
+			console.log(address);
+			await mint(address);
 		}
 	};
 
