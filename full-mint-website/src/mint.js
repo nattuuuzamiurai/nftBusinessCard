@@ -1,16 +1,16 @@
-import { privateKey } from "./secret/key.js";
-import { rpc, nftAddress } from "./secret/lib.js";
+import { getPrivateKey } from "./keys/key.js";
+import { getNftAddress, getRpc } from "./keys/lib.js";
 import { ethers } from "ethers";
 import BusinessCardNft from "./BusinessCardNft.json";
 
 const mint = async (recipient) => {
-	const provider = new ethers.providers.JsonRpcProvider(rpc);
+	const provider = new ethers.providers.JsonRpcProvider(getRpc);
 	const contract = new ethers.Contract(
-		nftAddress,
+		getNftAddress,
 		BusinessCardNft.abi,
 		provider
 	);
-	const wallet = await new ethers.Wallet(privateKey, provider);
+	const wallet = await new ethers.Wallet(getPrivateKey, provider);
 	const nonce = await wallet.getTransactionCount();
 	const gasFee = await provider.getFeeData().gasPrice;
 
