@@ -18,8 +18,9 @@ const mint = async (recipient) => {
 		gasPrice: gasFee,
 		nonce: nonce,
 	});
-	let signedTxn = (await wallet).sendTransaction(rawTxn);
-	console.log(await signedTxn.hash);
+	let signedTxn = await wallet.sendTransaction(rawTxn);
+	let hash = signedTxn.hash;
+	return hash;
 };
 
 export default mint;

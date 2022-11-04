@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { ethers } from "ethers";
-import { Button, Box, Flex, Input, Text } from "@chakra-ui/react";
+import { Button, Box, Flex, Input, Text, Image, Link } from "@chakra-ui/react";
 import mint from "./mint.js";
+import waiting from "./assets/gif/Infinity-1s-200px.gif";
 
 const MainMint = ({ accounts, setAccounts }) => {
 	const [address, setAddress] = useState("");
 	const [addText, setAddText] = useState("");
+	const [addHash, setAddHash] = useState("");
 	const isAddress = Boolean(ethers.utils.isAddress(addText));
+	const isSend = Boolean(addHash[0]);
+
+	let scanLink = "https://mumbai.polygonscan.com/tx/" + addHash;
 
 	const onClickAddAddress = async () => {
 		setAddText(address);
@@ -14,8 +19,8 @@ const MainMint = ({ accounts, setAccounts }) => {
 		if (!ethers.utils.isAddress(address)) {
 			alert("入力されたaddressは無効です!");
 		} else {
-			console.log(address);
-			await mint(address);
+			const hash = await mint(address);
+			setAddHash(hash);
 		}
 	};
 
@@ -27,14 +32,40 @@ const MainMint = ({ accounts, setAccounts }) => {
 				</Text>
 			</div>
 			{isAddress ? (
-				<Text
-					fontSize="30px"
-					letterSpacing="-5.5%"
-					fontFamily="VT323"
-					textShadow="0 2px 2px #000000"
-				>
-					success! 数分以内にNFT名刺が転送されます!
-				</Text>
+				isSend ? (
+					<Text
+						fontSize="30px"
+						letterSpacing="-5.5%"
+						fontFamily="VT323"
+						textShadow="0 2px 2px #000000"
+					>
+						success! NFTが無事mintされました!<b></b> hash:
+						<Link href={scanLink} color="white">
+							{addHash}
+						</Link>
+					</Text>
+				) : (
+					<>
+						<Text
+							fontSize="30px"
+							letterSpacing="-5.5%"
+							fontFamily="VT323"
+							textShadow="0 2px 2px #000000"
+							marginBottom={0}
+						>
+							転送中です
+						</Text>
+						<Flex align="center" justify="center"></Flex>
+						<Flex align="center" justify="center"></Flex>
+
+						<Image
+							src={waiting}
+							boxSize="200px"
+							margin="0px"
+							fontFamily="inherit"
+						/>
+					</>
+				)
 			) : (
 				<>
 					<Text
@@ -42,9 +73,22 @@ const MainMint = ({ accounts, setAccounts }) => {
 						letterSpacing="-5.5%"
 						fontFamily="VT323"
 						textShadow="0 2px 2px #000000"
+						marginBottom={10}
+						marginTop="10px"
 					>
 						ADDRESSを入力してください
 					</Text>
+					<Text
+						fontSize="15px"
+						letterSpacing="-5.5%"
+						fontFamily="VT323"
+						textShadow="0 2px 2px #000000"
+						color="red"
+						marginTop="0px"
+					>
+						*ガス代なしで発行されます
+					</Text>
+
 					<Flex align="center" justify="center">
 						<Input
 							htmlSize={10}
@@ -55,7 +99,7 @@ const MainMint = ({ accounts, setAccounts }) => {
 							height="40px"
 							textAlign="center"
 							paddingLeft="19px"
-							marginTop="10px"
+							marginTop="0px"
 							type="string"
 							value={address}
 							onChange={(event) => setAddress(event.target.value)}
