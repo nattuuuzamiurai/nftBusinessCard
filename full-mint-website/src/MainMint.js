@@ -8,20 +8,9 @@ const MainMint = ({ accounts, setAccounts }) => {
 	const [addText, setAddText] = useState("");
 	const isAddress = Boolean(ethers.utils.isAddress(addText));
 
-	async function storageAddress() {
-		console.log(address);
-		try {
-			//コントラクト内のmint()を実行
-			// const response = await contract.mint();
-			// console.log("response: ", response);
-		} catch (err) {
-			console.log("error: ", err);
-		}
-	}
 	const onClickAddAddress = async () => {
 		setAddText(address);
 		setAddress("");
-		const checkAddress = address.toString();
 		if (!ethers.utils.isAddress(address)) {
 			alert("入力されたaddressは無効です!");
 		} else {

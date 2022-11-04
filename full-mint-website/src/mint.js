@@ -3,6 +3,9 @@ import { getNftAddress, getRpc } from "./keys/lib.js";
 import { ethers } from "ethers";
 import BusinessCardNft from "./BusinessCardNft.json";
 
+console.log(getRpc());
+console.log(getNftAddress());
+
 const mint = async (recipient) => {
 	const provider = new ethers.providers.JsonRpcProvider(getRpc());
 	const contract = new ethers.Contract(
