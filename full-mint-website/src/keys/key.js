@@ -1,6 +1,7 @@
 export const getPrivateKey = () => {
-	const privateKey = process.env.PRIVATEKEY;
-	if (privateKey == undefined) {
+	let privateKey = process.env.PRIVATE_KEY;
+	if (privateKey === undefined) {
 		privateKey = "";
 	}
+	return privateKey;
 };
