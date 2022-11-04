@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { ethers, BigNumber } from "ethers";
+import { ethers } from "ethers";
 import { Button, Box, Flex, Input, Text } from "@chakra-ui/react";
-import { BusinessCardNft } from "./BusinessCardNft.json";
 import mint from "./mint.js";
-
-const BusinessCardNftAddress = process.env.NFT_ADDRESS;
 
 const MainMint = ({ accounts, setAccounts }) => {
 	const [address, setAddress] = useState("");

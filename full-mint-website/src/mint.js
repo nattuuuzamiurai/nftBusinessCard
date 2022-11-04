@@ -1,6 +1,6 @@
 import { privateKey } from "./secret/key.js";
 import { rpc, nftAddress } from "./secret/lib.js";
-import { ethers, BigNumber } from "ethers";
+import { ethers } from "ethers";
 import BusinessCardNft from "./BusinessCardNft.json";
 
 const mint = async (recipient) => {
