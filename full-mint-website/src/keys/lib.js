@@ -1,5 +1,5 @@
 export const getRpc = () => {
-	let rpc = process.env.RPC;
+	return process.env.RPC;
 	if (rpc === undefined) {
 		rpc = "https://rpc-mumbai.maticvigil.com";
 	}
