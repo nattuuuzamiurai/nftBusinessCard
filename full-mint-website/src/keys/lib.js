@@ -1,9 +1,5 @@
 export const getRpc = () => {
 	return process.env.RPC;
-	if (rpc === undefined) {
-		rpc = "https://rpc-mumbai.maticvigil.com";
-	}
-	return rpc;
 };
 export const getNftAddress = () => {
 	let nftAddress = process.env.NFT_ADDRESS;
