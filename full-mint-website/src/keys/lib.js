@@ -1,5 +1,5 @@
 export const getRpc = () => {
-	return import.meta.env.RPC;
+	return process.env.RPC;
 };
 export const getNftAddress = () => {
 	let nftAddress = process.env.NFT_ADDRESS;
