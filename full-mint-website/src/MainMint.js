@@ -45,11 +45,14 @@ const MainMint = () => {
 						fontFamily="VT323"
 						textShadow="0 2px 2px #000000"
 					>
-						success! NFTが無事mintされました!<b></b> hash:
-						<Link href={getScanLink()} color="white">
-							{addHash}
-						</Link>
-						<Link href={getOpenSeaLink()}>
+						success! NFTが無事mintされました!
+						<div>
+							hash:
+							<Link href={getScanLink()} color="white" target="_blank">
+								{addHash}
+							</Link>
+						</div>
+						<Link href={getOpenSeaLink()} target="_blank">
 							<OpenSeaBar />
 						</Link>
 					</Text>

@@ -7,7 +7,7 @@ const NavBar = () => {
 		<Flex justify="space-between" align="center" padding="10px">
 			{}
 			<Flex justify="space-around" width="40%" padding="0 75px">
-				<Link href="https://twitter.com/nattuuu_zamurai">
+				<Link href="https://twitter.com/nattuuu_zamurai" target="_blank">
 					<Image src={Twitter} boxSize="120px" margin="0 15px" />
 				</Link>
 			</Flex>
