@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Box, Flex, Image, Link, Spacer } from "@chakra-ui/react";
+import { Flex, Image, Link } from "@chakra-ui/react";
 import Twitter from "./assets/social-media-icons/logo.png";
 
 const NavBar = () => {

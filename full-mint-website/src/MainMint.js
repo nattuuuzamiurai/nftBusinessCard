@@ -3,15 +3,21 @@ import { ethers } from "ethers";
 import { Button, Box, Flex, Input, Text, Image, Link } from "@chakra-ui/react";
 import mint from "./mint.js";
 import waiting from "./assets/gif/Infinity-1s-200px.gif";
+import OpenSeaBar from "./opensea";
 
-const MainMint = ({ accounts, setAccounts }) => {
+const MainMint = () => {
 	const [address, setAddress] = useState("");
 	const [addText, setAddText] = useState("");
 	const [addHash, setAddHash] = useState("");
 	const isAddress = Boolean(ethers.utils.isAddress(addText));
 	const isSend = Boolean(addHash[0]);
 
-	let scanLink = "https://mumbai.polygonscan.com/tx/" + addHash;
+	const getScanLink = () => {
+		return "https://mumbai.polygonscan.com/tx/" + addHash;
+	};
+	const getOpenSeaLink = () => {
+		return "https://opensea.io/ja/" + addText;
+	};
 
 	const onClickAddAddress = async () => {
 		setAddText(address);
@@ -40,8 +46,11 @@ const MainMint = ({ accounts, setAccounts }) => {
 						textShadow="0 2px 2px #000000"
 					>
 						success! NFTが無事mintされました!<b></b> hash:
-						<Link href={scanLink} color="white">
+						<Link href={getScanLink()} color="white">
 							{addHash}
+						</Link>
+						<Link href={getOpenSeaLink()}>
+							<OpenSeaBar />
 						</Link>
 					</Text>
 				) : (
