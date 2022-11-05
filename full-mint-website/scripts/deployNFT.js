@@ -3,7 +3,7 @@ const hre = require("hardhat");
 async function main() {
 	const CardNFT = await hre.ethers.getContractFactory("BusinessCardNft");
 	const cardNFT = await CardNFT.deploy(
-		"Nattuuu Business Card",
+		"NattuuuBusinessCard",
 		"なっとう侍",
 		"ipfs://QmVVShRQpjWEmNDhvKMuZkAAULcD75am8zPLN2nsqpkSjp"
 	);

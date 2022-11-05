@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract BusinessCardNft is ERC721, Ownable {
     string internal baseTokenUri;
-    uint256 public totalSupply = 0;
+    uint256 public totalSupply = 1;
 
     constructor(
         string memory _name,
