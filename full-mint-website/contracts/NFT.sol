@@ -18,10 +18,17 @@ contract BusinessCardNft is ERC721, Ownable {
     }
 
     mapping(address => uint256) public minted;
+    mapping(address => uint256) public ownerById;
+
+    function getId(address owner) public view returns (uint256 id) {
+        return ownerById[owner];
+    }
 
     function mint(address to) public onlyOwner {
+        require(minted[to] == 0);
         minted[to] = 1;
         uint256 tokenId = totalSupply;
+        ownerById[to] = tokenId;
         totalSupply++;
         _safeMint(to, tokenId);
     }

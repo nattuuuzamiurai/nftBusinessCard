@@ -4,23 +4,26 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+const accounts =
+	process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [];
+
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
 	solidity: "0.8.9",
 	networks: {
 		local: {
 			url: "http://localhost:8545",
-			accounts: [process.env.LOCAL_KEY],
+			accounts: accounts,
 		},
 		polygon: {
-			url: process.env.POLYGON_RPC_URL,
+			url: "https://polygon-rpc.com",
 			chianId: 137,
-			accounts: [process.env.PRIVATE_KEY],
+			accounts: accounts,
 		},
 		mumbai: {
-			url: process.env.MUMBAI_RPC_URL,
+			url: "https://rpc-mumbai.maticvigil.com",
 			chianId: 80001,
-			accounts: [process.env.PRIVATE_KEY],
+			accounts: accounts,
 		},
 	},
 	etherscan: {
