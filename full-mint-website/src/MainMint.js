@@ -33,22 +33,27 @@ const MainMint = () => {
 	return (
 		<Box>
 			<div className="title">
-				<Text fontSize="120px" textShadow="0 5px #000000">
+				<Text fontSize="50px" textShadow="0 5px #000000">
 					NFT名刺
 				</Text>
 			</div>
 			{isAddress ? (
 				isSend ? (
 					<Text
-						fontSize="30px"
+						fontSize="20px"
 						letterSpacing="-5.5%"
 						fontFamily="VT323"
 						textShadow="0 2px 2px #000000"
 					>
 						success! NFTが無事mintされました!
+						<div>hash:</div>
 						<div>
-							hash:
-							<Link href={getScanLink()} color="white" target="_blank">
+							<Link
+								href={getScanLink()}
+								color="red"
+								target="_blank"
+								fontSize="15px"
+							>
 								{addHash}
 							</Link>
 						</div>
@@ -103,11 +108,12 @@ const MainMint = () => {
 
 					<Flex align="center" justify="center">
 						<Input
+							fontSize="16px"
 							htmlSize={10}
 							color="gray.300"
 							fontFamily="inherit"
 							backgroundColor="#C0C0C0"
-							width="650px"
+							width="350px"
 							height="40px"
 							textAlign="center"
 							paddingLeft="19px"
